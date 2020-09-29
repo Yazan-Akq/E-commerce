@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	{% block title %}
+		E-commerce | CartPage
+	{% endblock %}
+	</title>
+</head>
+<body>
+<br><br>
+<div class="container">
+  <div class="card" style="width: 70rem;height: 160px;">
+  <div class="card-body">
+    <a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+    <br><br>
+    <table class="table">
+          <tr>
+            <th><h5 style="margin-top: 10px;">Items: <strong>{{order.get_cart_items}}</strong></h5></th>
+            <th><h5 style="margin-top: 10px;">Total:<strong> ${{order.get_cart_total|floatformat:2}}</strong></h5></th>
+            <th>
+              <a  style="float:right; margin:5px; " class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+            </th>
+          </tr>
+        </table>
+  </div>
+</div>
+<br><br>
+{% if items %}
+  <div class="card" style="width: 70rem; height: 700px;">
+<div class="container">  
+  <table class="table">
+          <tr>
+            <th><p style="margin-left:400px;margin-right:70px;">Item</p></th>
+            <th><p style="margin-right: 80px;"> Price </p></th>
+            <th><p style="margin-right:50px;">Quantity</p></th>
+            <th><p style="margin-right: 80px;"> Total</p></th>
+          </tr>
+        </table>        
+        
+</div>        
+  <div class="card-body">
+    <hr style="margin-top: -50px;">
+    {% for item in items %}
+    <div class="row">
+
+    <!--Grid column-->
+    <div class="col-lg-8">
+     <div class="mb-3">
+        <div class="pt-4 wish-list">
+        <div class="cart-row">
+          <div class="row mb-4">
+            <div class="col-md-5 col-lg-3 col-xl-3">
+              <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
+                <img style="margin-top: -35px;" class="img-fluid w-100"
+                  src="{{ item.product.image.url }}" alt="Sample">
+                 
+                <a href="#!">
+                </a>
+              </div>
+            </div>
+          <div style="flex:2;margin-left: 235px;margin-right: 60px;"><p>{{item.product.name}}</p></div>
+          <div style="flex:1;margin-left: -180px;"><p>${{item.product.price|floatformat:2}}</p></div>
+          <div style="flex:1">
+            <p  class="quanity">{{item.quanity}}</p>
+            <div class="quanity">
+              <img style="height: 10px;margin-left: 25px;
+              margin-top: -100px; " data-product="{{item.product.id}}" data-action="add" class="chg-quanity update-cart" src="{% static  'images/arrow-up.png' %}">
+          
+              <img style="height: 10px;margin-left: -18px;margin-top: -60px;" data-product="{{item.product.id}}" data-action="remove" class="chg-quanity update-cart" src="{% static  'images/arrow-down.png' %}">
+            </div>
+          </div>
+          <div style="flex:1; margin-right: -380px;"><p>
+            <strong>${{item.get_total|floatformat:2}}</strong></p></div>
+        </div>
+        
+  </div>
+</div>
+</div>
+</div>
+</div>
+<hr style="margin-top: -35px;">
+  {% endfor %}
+</div>
+<br>
+</div>
+{% else %}
+
+{% endif %}
+
+<br><br>	
+</body>
+</html>
+{% endblock %}

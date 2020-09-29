@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+	{% block title %}
+		E-commerce | StorePage
+	{% endblock %}
+</title>
+</head>
+<body>
+	<br><br>
+	
+<div class="container">
+<div class="row">	
+{% if products %}
+	{% for product in products %}
+		<div class="col-sm">
+		<div class="card" style="width: 18rem;">
+	  <div class="card-body">
+	     <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+	  		<br><br>
+	    <h6 class="card-text">{{ product.name }}</h6>
+	    <hr>
+	    <button data-product='{{ product.id }}' 
+	    data-action='add' style="margin-top: -3px;" href="#" class="btn btn-outline-success btn-sm update-cart">Add to cart</button>
+      <a style="margin-top: -3px;" href="#" class="btn btn-info btn-sm">View</a>
+       <p style="margin-top: -27px;" class="text-right"><strong>
+	    ${{ product.price }}</strong></p>
+	  </div>
+	</div>
+	<br>
+	<br>
+</div>
+	{% endfor %}
+{% endif %}	
+</div>
+</div>
+</body>
+</html>
+{% endblock %}

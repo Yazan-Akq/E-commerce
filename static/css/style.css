@@ -75,3 +75,33 @@ li.nav-item{
 	margin-left: -1050px;
 	margin-top: -37px;
 }
+body{
+	background-color: #F8F8F8;
+}
+#cart-total{
+
+	text-align: center;
+	list-style:none;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+}
+.card{
+	height: 280px;
+}
+.bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      
